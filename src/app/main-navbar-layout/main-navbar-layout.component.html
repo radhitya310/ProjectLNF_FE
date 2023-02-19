@@ -1,0 +1,45 @@
+
+
+<app-nav-bar></app-nav-bar>
+<div class="my-overlay" *ngIf="showOverlay">
+    <h4 class="fa fa-circle-o-notch fa-spin fa-fw" aria-hidden="true"></h4>
+</div>
+
+<div class="body-wrapper">
+    <router-outlet *ngIf="!showOverlay"></router-outlet>
+</div>
+<!-- <router-outlet></router-outlet> -->
+<footer class="footer" *ngIf="router.url !== '/chat'">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 pr-0">
+                <img class="brand-logo" alt="stack admin logo" src="../assets/images/logo/ketemu.png"
+                    style="max-height:50%; max-width:50%">
+            </div>
+            <div class="col-md-4 col-sm-12 pr-0">
+                <h4 class="title">About us</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Tentang Ketemu</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12 pr-0">
+                <h4 class="title">Social Media</h4>
+                <div class="category">
+                    <a href="#" class="btn btn-social-icon mr-1 mb-1 btn-facebook"><span
+                            class="fa fa-facebook"></span></a>
+                    <a href="#" class="btn btn-social-icon mr-1 mb-1 btn-twitter"><span
+                            class="fa fa-twitter"></span></a>
+                    <a href="#" class="btn btn-social-icon mr-1 mb-1 btn-instagram"><span
+                            class="fa fa-instagram font-medium-3"></span></a>
+                    <a href="#" class="btn btn-social-icon mr-1 mb-1 btn-red"><span
+                            class="fa fa-youtube-play font-medium-3"></span></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row text-center" style="display: block">© 2022 KETEMU</div>
+    </div>
+</footer>

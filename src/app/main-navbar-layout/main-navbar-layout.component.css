@@ -1,0 +1,15 @@
+.my-overlay {
+    font-size: 15ch;
+    height: 60%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.footer{
+  background-color: #CDFCF6;
+}
+
+.body-wrapper{
+  background-color: #FAF7F0;
+}

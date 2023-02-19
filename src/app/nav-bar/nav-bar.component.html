@@ -1,0 +1,278 @@
+<div>
+    <!-- fixed-top-->
+    <nav
+        class="navbar-expand-md navbar-with-menu navbar-static-top navbar-light navbar-border navbar-brand-center p-1">
+        <div class="container center-layout">
+            <div class="content-wrapper">
+                <div class="row navbar">
+                    <div class="col-md-4 col-sm-2 pr-0"><a class="navbar-brand" (click)="gotoHome()">
+                            <img class="brand-logo" alt="stack admin logo" src="/assets/images/logo/ketemu.png"
+                                style="max-height:50px; max-width:100px">
+                        </a>
+                    </div>
+                    
+                    <div class="col pr-0 pl-0">
+                        <form (submit)="search(searchBar.value)" name="searchBar">
+                            <fieldset class="position-relative">
+                                <input class="form-control form-control-xl input-xl" #searchBar name="searchBar" placeholder="Cari dompet ..."
+                                    (focus)="initSearchBar($event)" (blur)="hideSearchBar()" (keypress)="initSearchBar($event)" autocomplete="off">
+                                <div class="form-control-position">
+                                    <a ID="lbSearchButton" (click)="search(searchBar.value)"><i class="ficon ft-search"></i></a>
+                                </div>
+                            </fieldset>
+                            <div class="suggestion-container" *ngIf="showSuggestion" (click)="initSearchBar($event)"
+                                (mousedown)=$event.preventDefault()>
+                                <h3>Terakhir dicari oleh dirimu</h3>
+                                <div class="row" *ngFor="let hist of resSearchHistory.slice().reverse()">
+                                    <a class="col-md-10 col-sm-12" (click)="historyClicked(hist.SearchHist)" routerLink="/search?q={{hist.SearchHist}}&type=Lost"  href="/search?q={{hist.SearchHist}}&type=Lost">
+                                        <div class="row">
+                                            <div class="col-sm-2"><i class="ficon ft-clock"></i></div>
+                                            <div class="col-sm-8">{{hist.SearchHist}}</div>
+                                        </div>
+                                    </a>
+                                    <a class="col-md-2 col-sm-12" (click)="deleteRecentSearch(hist.SearchHist)">
+                                        <div class="col-sm-2"><i class="ficon ft-x"></i></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col pr-0">
+                        <ul class="list-inline">
+                            <li class="nav-item" id="li1">
+                                <!-- href="{{btnPostRef}}" routerLink="{{btnPostRef}}" -->
+                                <a class="btnPost" data-toggle="modal" data-target="#large" href="{{btnPostRef}}" routerLink="{{btnPostRef}}">
+                                    <span>Post Now</span>
+                                    <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                                        <path
+                                            d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
+                                            fill="black"></path>
+                                    </svg>
+                                </a>                                
+                            </li>
+                            <!-- <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
+                                                            id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false"><i class="flag-icon flag-icon-gb"></i><span
+                                                                class="selected-language"></span></a>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#"><i
+                                                                    class="flag-icon flag-icon-gb"></i>English</a><a class="dropdown-item" href="#"><i
+                                                                    class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#"><i
+                                                                    class="flag-icon flag-icon-cn"></i> Chinese</a><a class="dropdown-item" href="#"><i
+                                                                    class="flag-icon flag-icon-de"></i> German</a></div>
+                                                    </li> -->
+                            <li class="nav-item">
+                                <ul class="list-inline" *ngIf="sessionId != null">
+                                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
+                                            data-toggle="dropdown"><i class="ficon ft-bell"></i><span
+                                                class="badge badge-pill badge-default badge-danger badge-default badge-up">5</span></a>
+                                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                            <li class="dropdown-menu-header">
+                                                <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span><span
+                                                        class="notification-tag badge badge-default badge-danger float-right m-0">5
+                                                        New</span></h6>
+                                            </li>
+                                            <li class="scrollable-container media-list"><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left align-self-center"><i
+                                                                class="ft-plus-square icon-bg-circle bg-cyan"></i>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading">You have new order!</h6>
+                                                            <p class="notification-text font-small-3 text-muted">Lorem ipsum dolor sit
+                                                                amet, consectetuer elit.</p>
+                                                            <small>
+                                                                <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">30
+                                                                    minutes
+                                                                    ago</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left align-self-center"><i
+                                                                class="ft-download-cloud icon-bg-circle bg-red bg-darken-1"></i></div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading red darken-1">99% Server load</h6>
+                                                            <p class="notification-text font-small-3 text-muted">Aliquam tincidunt
+                                                                mauris eu risus.</p>
+                                                            <small>
+                                                                <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Five
+                                                                    hour
+                                                                    ago</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left align-self-center"><i
+                                                                class="ft-alert-triangle icon-bg-circle bg-yellow bg-darken-3"></i>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading yellow darken-3">Warning notifixation</h6>
+                                                            <p class="notification-text font-small-3 text-muted">Vestibulum auctor
+                                                                dapibus neque.</p>
+                                                            <small>
+                                                                <time class="media-meta text-muted"
+                                                                    datetime="2015-06-11T18:29:20+08:00">Today</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left align-self-center"><i
+                                                                class="ft-check-circle icon-bg-circle bg-cyan"></i>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading">Complete the task</h6>
+                                                            <small>
+                                                                <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Last
+                                                                    week</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left align-self-center"><i class="ft-file icon-bg-circle bg-teal"></i>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading">Generate monthly report</h6>
+                                                            <small>
+                                                                <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Last
+                                                                    month</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a></li>
+                                            <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center"
+                                                    href="javascript:void(0)">Read all notifications</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
+                                            data-toggle="dropdown"><i class="ficon ft-mail"></i><span
+                                                class="badge badge-pill badge-default badge-warning badge-default badge-up">3</span></a>
+                                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                            <li class="dropdown-menu-header">
+                                                <h6 class="dropdown-header m-0"><span class="grey darken-2">Messages</span><span
+                                                        class="notification-tag badge badge-default badge-warning float-right m-0">4
+                                                        New</span></h6>
+                                            </li>
+                                            <li class="scrollable-container media-list"><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <span class="avatar avatar-sm avatar-online rounded-circle">
+                                                                <img src="assets/images/portrait/small/avatar-s-1.png"
+                                                                    alt="avatar"><i></i></span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading">Margaret Govan</h6>
+                                                            <p class="notification-text font-small-3 text-muted">I like your portfolio,
+                                                                let's start.</p>
+                                                            <small>
+                                                                <time class="media-meta text-muted"
+                                                                    datetime="2015-06-11T18:29:20+08:00">Today</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <span class="avatar avatar-sm avatar-busy rounded-circle">
+                                                                <img src="assets/images/portrait/small/avatar-s-2.png"
+                                                                    alt="avatar"><i></i></span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading">Bret Lezama</h6>
+                                                            <p class="notification-text font-small-3 text-muted">I have seen your work,
+                                                                there is</p>
+                                                            <small>
+                                                                <time class="media-meta text-muted"
+                                                                    datetime="2015-06-11T18:29:20+08:00">Tuesday</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <span class="avatar avatar-sm avatar-online rounded-circle">
+                                                                <img src="assets/images/portrait/small/avatar-s-3.png"
+                                                                    alt="avatar"><i></i></span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading">Carie Berra</h6>
+                                                            <p class="notification-text font-small-3 text-muted">Can we have call in
+                                                                this week ?</p>
+                                                            <small>
+                                                                <time class="media-meta text-muted"
+                                                                    datetime="2015-06-11T18:29:20+08:00">Friday</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a><a href="javascript:void(0)">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <span class="avatar avatar-sm avatar-away rounded-circle">
+                                                                <img src="assets/images/portrait/small/avatar-s-6.png"
+                                                                    alt="avatar"><i></i></span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h6 class="media-heading">Eric Alsobrook</h6>
+                                                            <p class="notification-text font-small-3 text-muted">We have project party
+                                                                this saturday.</p>
+                                                            <small>
+                                                                <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">last
+                                                                    month</time></small>
+                                                        </div>
+                                                    </div>
+                                                </a></li>
+                                            <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center"
+                                                    href="javascript:void(0)">Read all messages</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--Profile Section-->
+                                    <li class="dropdown dropdown-user nav-item" id="liUser">
+                                        <a class="dropdown-toggle nav-link dropdown-user-link" data-toggle="dropdown">
+                                            <span class="avatar avatar-online">
+                                                <img src="{{userDataModel.UrlProfilePicture}}" alt="avatar" id="imgProfile" *ngIf="userDataModel.UrlProfilePicture">
+                                                <img src="../../assets/images/profile-stock.png" alt="avatar" id="imgProfile" *ngIf="!userDataModel.UrlProfilePicture">
+                                                <i></i>
+                                            </span>
+                                            <Label ID="lblUserName" CssClass="user-name"></Label>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" id="aProfile" href="/p/{{userDataModel.Username}}"
+                                                routerLink="/p/{{userDataModel.Username}}">
+                                                <i class="ft-user"></i>
+                                                Profile
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="/user/edit-profile">
+                                                <i class="ft-user"></i>
+                                                Edit Account
+                                            </a>
+                                            <a class="dropdown-item" href="/user/push-notification">
+                                                <i class="fa fa-bell-o"></i>
+                                                Push Notification
+                                            </a>
+                                            <a class="dropdown-item" href="/user/my-post">
+                                                <i class="fa fa-tasks"></i>
+                                                My Post
+                                            </a>
+                                            <a class="dropdown-item" href="email-application.html">
+                                                <i class="ft-mail"></i>
+                                                My Inbox (belum ada)
+                                            </a>
+                                            <a class="dropdown-item" href="user-cards.html">
+                                                <i class="ft-check-square"></i>Task(belum ada)</a>
+                                            <a class="dropdown-item" href="chat-application.html">
+                                                <i class="ft-message-square"></i>Chats(belum ada)</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" ID="lbLogout" (click)="logout()">Logout</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-user nav-item" id="liLogin" *ngIf="sessionId == null">
+                                <a class="nav-link" id="lbLogin" href="/login">Login</a>
+                            </li>
+                            <!--End Profile Section-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<app-post-item></app-post-item>

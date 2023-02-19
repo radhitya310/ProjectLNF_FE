@@ -1,0 +1,156 @@
+<div class="app-content container center-layout mt-2">
+    <div class="content-header row">
+        <div class="content-header-left col-md-4 col-12 mb-1">
+            <h3 class="content-header-title">Filter</h3>
+        </div>
+        <div class="content-header-left col-md-4 col-12">
+            <span>Menampilkan hasil untuk </span><strong class="text-bold-700">"{{query}}"</strong> <span> pada </span> <strong>"{{type}}"</strong>
+        </div>
+        <div class=" col-md-4 col-12">
+            <div class="btn-group float-right" role="group">
+                <div class="justify-content-center">
+                    <strong>Urutkan : </strong>
+                </div>
+                <button class="ddSort btn btn-outline-primary dropdown-toggle dropdown-menu-right" id="btnGroupDrop1" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="ddSorts"></span>{{sortValue}}</button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start"
+                style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                <a *ngFor="let sortKey of Object.keys(sortBy)">
+                    <a class="dropdown-item" (click)="sort(sortKey, sortBy[sortKey])" [ngClass]="sortValue != sortKey ? '' : 'active'" >{{sortKey}}</a>     
+                </a>               
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-detached content-right">
+        <div class="content-body">
+            <div>
+                <div class="my-overlay" *ngIf="showOverlay">
+                    <h4 class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></h4>
+                </div>
+                <div class="row" *ngIf="!showOverlay">
+                    <div class="col-12 p-0">
+                        <div class="container pr-0">
+                            <div class="row justify-content-left">
+                                <div class="col-auto mb-1" *ngFor="let post of resSearchPostModel">
+                                    <div class="card card-img-top border-grey border-lighten-2 card-outer mb-0">
+                                        <a routerLink="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}" href="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}"
+                                            itemprop="contentUrl" style="height:
+                                                100%">
+                                            <div class="card-body p-0 img-inner">
+                                                <img class="img-post gallery-thumbnail card-img-top img-fluid"
+                                                    src="{{post.ImgUrl}}" itemprop="thumbnail"
+                                                    alt="Image description" />
+                                            </div>
+                                            <div class="card-body px-0 pt-0">
+                                                <div class="mb-0 ml-1" style="height: 70px">
+                                                    <div class="card-home">
+                                                        <h6 class="text-bold-600 m-0">
+                                                            {{ post.PostTitle }}
+                                                        </h6>
+                                                    </div>
+                                                    <div class="card-home">
+                                                        <h6 class="card-subtitle text-muted mt-1">
+                                                            {{post.PostDescription}}
+                                                        </h6>
+                                                    </div>
+                                                    <div class="card-home text-right mr-1">
+                                                        <h6 class="text-bold-600">
+                                                            {{post.PostDate}}
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                                <hr class="m-0" />
+                                                <div class="text-center">
+                                                    <ul class="list-inline mb-1">
+                                                        <li class="col-md-5 col-sm-12">
+                                                            <span class="fa fa-heart-o"></span>
+                                                            <span>
+                                                                {{ post.TotalLikes }}
+                                                            </span>
+                                                        </li>
+                                                        <li class="col-md-5 col-sm-12">
+                                                            <span class="fa fa-comment-o"></span>
+                                                            <span>
+                                                                {{ post.TotalComment }}
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 p-0">
+                        <nav aria-label="Page navigation" *ngIf="totalPage.length > 0">
+                            <ul class="pagination justify-content-end">
+                                <!-- <li class="page-item" ></li> -->                                
+                                <li class="page-item" [ngClass]="1 != currentPage ? '' : 'disabled'"><a class="page-link" (click)="paginationClicked(currentPage - 1)" aria-label="previous"><<</a></li>
+                                <div *ngFor="let item of totalPage">                                                                        
+                                    <li class="page-item" [ngClass]="item != currentPage ? '' : 'active'"><a class="page-link" (click)="paginationClicked(item)">{{item}}</a></li>
+                                </div>                                
+                                <li class="page-item" [ngClass]="totalPage.length != currentPage ? '' : 'disabled'"><a class="page-link" (click)="paginationClicked(currentPage + 1)" aria-label="next">>></a></li>
+                                <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li> -->
+                                <!-- <li class="page-item"></li> -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="sidebar-detached sidebar-left sidebar-sticky">
+        <div class="sidebar">
+            <div class="sidebar-content card d-none d-lg-block">
+                <div class="card-body">
+                    <h4 class="card-title">Lost or Found</h4>
+                    <fieldset class="radio">
+                        <label>
+                          <input type="radio" name="radio" (click)="rbChange('Lost')" value="Lost" [checked]="rbLostChecked">
+                          Lost Post
+                        </label>
+                    </fieldset>
+                    <fieldset class="radio">
+                        <label>
+                          <input type="radio" name="radio" (click)="rbChange('Found')" value="Found" [checked]="rbFoundChecked">
+                          Found Post
+                        </label>
+                    </fieldset>
+                    <!-- /Card sample -->
+                    <hr>
+                    <!-- Striped Progress sample -->
+                    <!-- <div class="category-title pb-1"> -->
+                        <h4 class="card-title">Category</h4>
+                    <!-- </div> -->
+                    <div>
+                        <div class="progress progress-sm mt-1 mb-0">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="progress progress-sm mt-1 mb-0">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="progress progress-sm mt-1 mb-0">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <!-- /Striped Progress sample -->
+                    <hr>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

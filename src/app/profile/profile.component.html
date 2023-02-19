@@ -1,0 +1,129 @@
+<body>
+    <div class="app-content container center-layout mt-2">
+        <div class="card mb-1">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card-body col-md-2 col-sm-12">
+                        <div class="text-center">
+                            <img src="{{resProfileLayout.UrlProfilePicture}}" class="rounded-circle  height-150" alt="Card image" data-stories_space_upload_el_handled="1">
+                        </div>
+                    </div>
+                    <div class="card-body col-md-4 col-sm-12">
+                        <h4 class="card-title mb-1">{{resProfileLayout.FullName}}</h4>
+                        <ul class="list-inline mb-1">
+                            <li class="pr-1">
+                                <h6>{{resProfileLayout.TotalFollowers}} Followers</h6>
+                                <li class="pr-1">
+                                    <h6>{{resProfileLayout.Likes}} Likes</h6>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <h4 class="card-title mb-1">All Post</h4>
+                <div class="col-12 p-0">
+                    <div class="container p-0">
+                        <div class="row justify-content-left">
+                            <div class="col-auto mb-1" *ngFor="let post of resUserPosts">
+                                <div class="card card-img-top border-grey border-lighten-2"
+                                    style="height: 275px; width: 220px">
+                                    <a routerLink="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}" href="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}"
+                                        itemprop="contentUrl" style="height:
+                                            100%">
+                                        <div class="card-body p-0" style="height: 183px; width: 220px">
+                                            <img class="img-post gallery-thumbnail card-img-top img-fluid"
+                                                src="{{post.ImgUrl}}" itemprop="thumbnail"
+                                                alt="Image description" />
+                                        </div>
+                                        <div class="card-body px-0 pt-0">
+                                            <div class="mb-0 ml-1" style="height: 70px">
+                                                <div class="card-home">
+                                                    <h6 class="text-bold-600 m-0">
+                                                        {{ post.PostTitle }}
+                                                    </h6>
+                                                </div>
+                                                <div class="card-home">
+                                                    <h6 class="card-subtitle text-muted mt-1">
+                                                        {{post.PostDescription}}
+                                                    </h6>
+                                                </div>
+                                                <div class="card-home text-right mr-1">
+                                                    <h6 class="text-bold-600">
+                                                        {{post.PostDate}}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0" />
+                                            <div class="text-center">
+                                                <ul class="list-inline mb-1">
+                                                    <li class="col-md-5 col-sm-12">
+                                                        <span class="fa fa-heart-o"></span>
+                                                        <span>
+                                                            {{ post.TotalLikes }}
+                                                        </span>
+                                                    </li>
+                                                    <li class="col-md-5 col-sm-12">
+                                                        <span class="fa fa-comment-o"></span>
+                                                        <span>
+                                                            {{ post.TotalComment }}
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-1">Bio</h4>
+                                {{resProfileLayout.Bio}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-1">Social Media Account</h4>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 mb-1">
+                                        <div class="form-group">
+                                            <!-- Social Buttons block size-->
+                                            <a href="#" class="btn btn-social btn-block mb-1 btn-facebook"><i class="fa fa-facebook"></i>Rocitha</a>
+                                            <a href="#" class="btn btn-social btn-block mb-1 btn-twitter"><span class="fa fa-twitter"></span>Rocitha</a>
+                                            <a href="#" class="btn btn-social btn-block mb-1 btn-instagram"><span class="fa fa-instagram"></span>Rocitha</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/js/core/libraries/jquery.min.js"></script>
+    <script src="../../assets/vendors/js/ui/popper.min.js"></script>
+    <script src="../../assets/js/core/libraries/bootstrap.min.js"></script>
+    <script src="../../assets/vendors/js/ui/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../../assets/vendors/js/ui/unison.min.js"></script>
+    <script src="../../assets/vendors/js/ui/blockUI.min.js"></script>
+    <script src="../../assets/vendors/js/ui/jquery-sliding-menu.js"></script>
+
+    <script src="../../assets/vendors/js/ui/jquery.sticky.js"></script>
+
+    <script src="../../assets/js/core/app-menu.js"></script>
+    <script src="../../assets/js/core/app.js"></script>
+
+    <script src="../../assets/js/scripts/pages/sk-content-sidebar.js"></script>
+</body>

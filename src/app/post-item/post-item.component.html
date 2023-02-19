@@ -1,0 +1,234 @@
+<!-- <div class="app-content container center-layout mt-2">
+    <div class="content-wrapper">
+        <div id="divPostCategory">
+            <h1 CssClass="card-title">Buat Post Baru</h1>
+            <h4 CssClass="card-title">Apakah kamu..</h4>
+            <div class="row justify-content-center">
+                <a ID="lbLost" type="button"
+                    class="col-md-5 col-sm-12 btn btn-outline-secondary square btn-min-width m-1 height-500 p-5"
+                    OnClick="lbLost_Click">
+                    <img src="../../../app-assets/images/icons/lost.png" class="mb-2 height-150" alt="Card image" />
+                    <h3 class="card-text card-title">
+                        Mencari Barang Hilang
+
+                    </h3>
+                </a>
+                <a ID="lbFound" type="button"
+                    class="col-md-5 col-sm-12 btn btn-outline-secondary square btn-min-width m-1 height-500"
+                    OnClick="lbFound_Click">
+                    <img src="../../../app-assets/images/icons/found.png" class="mb-2 height-150" alt="Card image">
+                    <div class="card-title">
+                        <h3>Menemukan Barang
+                        </h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div id="divAttributes" visible="false">
+            <h1 CssClass="card-title">Informasi Barang</h1>
+            divider -->
+<!-- <div class="col-md-4 col-10 p-0" id="divPostDetail">
+                    <h1>Apakah kamu (radio button dulu ya)</h1>
+                    <asp:RadioButtonList ID="rblMeasurementSystem">
+                        <asp:ListItem Text="Mencari Barangmu yang Hilang" Value="1" />
+                        <asp:ListItem Text="Menemukan Barang disekitarmu" Value="2" />
+                    </asp:RadioButtonList>
+                    <h1>Subject</h1>
+                    <input ID="txtSubject"
+                        class="form-control form-control-xl input-xl border-grey border-lighten-1" />
+                    <h1>Category (DDL dulu ya)</h1>
+                    <div class="list-group list-group-messages" id="listCategory" data-scroll-to-active="true">
+                        <asp:DropDownList ID="ddlCategory" ValidationGroup="btnPost"
+                            AutoPostBack="false"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvCategory" ControlToValidate="ddlCategory"
+                            Display="Dynamic" InitialValue="Select Category" ErrorMessage="Please Select the Category"
+                            ValidationGroup="btnPost">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                    <h1>Description</h1>
+                    <input ID="txtDesc"
+                        class="form-control form-control-xl input-xl border-grey border-lighten-1 " />
+                    <button ID="btnPost" Text="Post" OnClick="btnPost_Click" ValidationGroup="btnPost" />
+                </div>
+                divider
+        </div>
+    </div>
+</div> -->
+<!-- divider -->
+<div class="form-group">
+    <!-- Modal -->
+    <div class="modal fade text-left" id="large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel17">Buat Post Baru</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="divForm" *ngIf="!isLostFoundClicked">
+                        <h4 CssClass="card-title">Apakah kamu..</h4>
+                        <div class="row justify-content-center">
+                            <a ID="lbLost" type="button"
+                                class="col-md-5 col-sm-12 btn btn-outline-secondary square btn-min-width m-1 height-500 p-5"
+                                (click)="initForm('Lost')">
+                                <img src="../assets/images/icons/lost.png" class="mb-2 height-150"
+                                    alt="Card image" />
+                                <h3 class="card-text card-title">
+                                    Mencari Barang Hilang
+                                </h3>
+                            </a>
+                            <a ID="lbFound" type="button"
+                                class="col-md-5 col-sm-12 btn btn-outline-secondary square btn-min-width m-1 height-500"
+                                (click)="initForm('Found')">
+                                <img src="../assets/images/icons/found.png" class="mb-2 height-150"
+                                    alt="Card image">
+                                <div class="card-title">
+                                    <h3>Menemukan Barang
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="divForm" *ngIf="isLostFoundClicked && !showSpinner">
+                        <form [formGroup]="form" class="form" (ngSubmit)="postItem()">
+                            <div class="form-body p-2">
+                                <div class="form-group">
+                                    <label for="issueinput1">Judul Post </label><span class="required"> *</span>
+                                    <input type="text" id="issueinput1" (keypress)="omit_special_char($event)" class="form-control" placeholder="Judul Post"
+                                        name="Judul Post" data-toggle="tooltip" data-trigger="hover"
+                                        data-placement="top" data-title="Judul Post" data-original-title="" title="" formControlName="PostTitle"
+                                        required >
+                                </div>
+
+                                <!-- <div class="form-group">
+                            <label for="issueinput2">Opened By</label>
+                            <input type="text" id="issueinput2" class="form-control" placeholder="opened by" name="openedby"
+                                data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Opened By"
+                                data-original-title="" title="">
+                        </div> -->
+
+                                <!-- <div class="form-group">
+                            <label for="issueinput3">Terakhir kali terlihat</label>
+                            <input type="date" id="issueinput3" class="form-control" name="dateopened" data-toggle="tooltip"
+                                data-trigger="hover" data-placement="top" data-title="Date Opened" data-original-title=""
+                                title="">
+                        </div> -->
+
+                                <label for="issueinput5">Category</label>
+                                <div class="form-group">
+                                    <select id="select2-icons" name="category" class="form-control"
+                                        data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Category" data-original-title="" title="" [(ngModel)]="selectedCategoryValue" formControlName="MCategoryId">
+                                        <option value="{{cat.MCategoryId}}" *ngFor="let cat of resBindCategory">
+                                            {{cat.CategoryName}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <!-- <div class="form-group">
+                            <label for="issueinput6">Status</label>
+                            <select id="issueinput6" name="status" class="form-control" data-toggle="tooltip"
+                                data-trigger="hover" data-placement="top" data-title="Status" data-original-title="" title="">
+                                <option value="not started">Not Started</option>
+                                <option value="started">Started</option>
+                                <option value="fixed">Fixed</option>
+                            </select>
+                        </div> -->
+
+                                <div class="form-group">
+                                    <label for="issueinput8">Deskripsi</label>
+                                    <textarea id="issueinput8" rows="5" class="form-control" name="Deskripsi"
+                                        placeholder="Deskripsi" data-toggle="tooltip" data-trigger="hover"
+                                        data-placement="top" data-title="Deskripsi" data-original-title="" formControlName="PostDescription"
+                                        title=""></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="issueinput8">Unggah foto</label>
+                                    <section id="drag-area">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="issueinput8">Sampul</label>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12">
+                                                <div class="card text-center">
+                                                    <div class="card-content collapse show">
+                                                        <a class="card-close" *ngIf="imgThumbnailBase64" (click)="cancelImageThumbnail()">
+                                                            <i class="ft-x"></i>
+                                                        </a>
+                                                        <div class="card-body p-0 imgContainer">
+                                                            <div class="imgContainer" *ngIf="imgThumbnailBase64">                                                            
+                                                            <img class="img-post gallery-thumbnail card-img-top img-fluid"
+                                                                src="{{imgThumbnailBase64}}" itemprop="thumbnail"
+                                                                alt="Image description" />
+                                                            </div>                                                                
+                                                            <div class="card-body imgContainer pt-3" *ngIf="!imgThumbnailBase64">
+                                                                <input type="file" class="fileUpload" accept="image/*"
+                                                                    (change)="onUploadImageThumbnail($event)">
+                                                                <div class="ft-plus-square"></div>
+                                                                <label for="issueinput8">Tambahkan foto</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" id="card-drag-area">
+                                            <div class="col-12">
+                                                <label for="issueinput8">Foto Lainnya</label>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12" *ngFor="let imgCard of listImageBase64; index as i">
+                                                <div class="card text-center">
+                                                    <div class="card-content collapse show">
+                                                        <a class="card-close" *ngIf="imgCard" (click)="cancelImage(i)">
+                                                            <i class="ft-x"></i>
+                                                        </a>
+                                                        <div class="card-body p-0 imgContainer">
+                                                            <div class="imgContainer" *ngIf="imgCard">                                                            
+                                                            <img class="img-post gallery-thumbnail card-img-top img-fluid"
+                                                                src="{{imgCard}}" itemprop="thumbnail"
+                                                                alt="Image description" />
+                                                            </div>                                                                
+                                                            <div class="card-body imgContainer pt-3" *ngIf="!imgCard">
+                                                                <input type="file" class="fileUpload" accept="image/*"
+                                                                    (change)="onUploadImage($event)">
+                                                                <div class="ft-plus-square"></div>
+                                                                <label for="issueinput8">Tambahkan foto</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <section class="loader" *ngIf="showSpinner">                    
+                        <div style="--i:0" class="slider">
+                        </div>
+                        <div style="--i:1" class="slider">
+                        </div>
+                        <div style="--i:2" class="slider">
+                        </div>
+                        <div style="--i:3" class="slider">
+                        </div>
+                        <div style="--i:4" class="slider">
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer" *ngIf="isLostFoundClicked && !showSpinner">
+                    <!-- <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-outline-primary" (click)="postItem()">                        
+                        Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

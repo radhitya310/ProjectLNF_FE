@@ -1,0 +1,144 @@
+<html class="loading" lang="en" data-textdirection="ltr">
+    <head>
+
+    </head>
+    <body class="list-group list-group-messages" data-open="click" data-menu="horizontal-menu" data-col="2-columns">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Edit Account</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" role="tab" aria-selected="true">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" role="tab" aria-selected="false">Password</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" role="tab" aria-selected="false">Connect</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content px-1 pt-1">
+                        <div class="tab-pane active show" id="tab1" role="tabpanel" aria-labelledby="base-tab1">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12 pr-0">
+                                    <div class="card-body">
+                                        <a runat="server" ID="lbLike"><span class="fa fa-trash"></span></a>
+                                        <div class="text-center">
+                                            <img src="{{userDataModel.UrlProfilePicture}}" class="rounded-circle height-150" alt="Card image">
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-outline-primary btn-min-width" onclick="selectFile()">Upload Image</button>
+                                        <input type="file" id="fileSelector" style="display: none;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 pt-1">
+                                            <div class="card mb-1">
+                                                <div class="card-header p-0">
+                                                    <h5 id="lblNama">Nama</h5>
+                                                </div>
+                                                <fieldset class="form-group position-relative mb-0">
+                                                    <input type="text" class="form-control" placeholder="Nama" value="{{userDataModel.FullName}}">
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="card mb-1">
+                                                <div class="card-header p-0">
+                                                    <h5 id="lblBio">Bio</h5>
+                                                </div>
+                                                <fieldset class="form-group position-relative mb-0">
+                                                    <input type="text" class="form-control" placeholder="Bio" value="{{userDataModel.Bio}}">
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="card mb-1">
+                                                <div class="card-header p-0">
+                                                    <h5 id="lblAddress">Address</h5>
+                                                </div>
+                                                <fieldset class="form-group position-relative mb-0">
+                                                    <input type="text" class="form-control" placeholder="Address">
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <button type="button" class="btn btn-primary btn-min-width float-right mb-1">Simpan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2" role="tabpanel" aria-labelledby="base-tab2">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 pt-1">
+                                    <div class="card mb-1">
+                                        <div class="card-header p-0">
+                                            <h5>Password Lama</h5>
+                                        </div>
+                                        <fieldset class="form-group position-relative mb-0">
+                                            <input type="text" class="form-control" placeholder="Password Lama">
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="card mb-1">
+                                        <div class="card-header p-0">
+                                            <h5>Password Baru</h5>
+                                        </div>
+                                        <fieldset class="form-group position-relative mb-0">
+                                            <input type="text" class="form-control" placeholder="Password Baru">
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="card mb-1">
+                                        <div class="card-header p-0">
+                                            <h5>Konfirmasi Password Baru</h5>
+                                        </div>
+                                        <fieldset class="form-group position-relative mb-0">
+                                            <input type="text" class="form-control" placeholder="Konfirmasi Password Baru">
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" class="btn btn-primary btn-min-width float-right mb-1">Simpan</button>
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab3" role="tabpanel" aria-labelledby="base-tab3">
+                            <p>Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert jujubes powder sweet sesame snaps.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../../assets/vendors/js/vendors.min.js"></script>
+        <script type="text/javascript" src="../../../assets/vendors/js/ui/jquery.sticky.js"></script>
+        <script type="text/javascript" src="../../../assets/vendors/js/charts/jquery.sparkline.min.js"></script>
+        <script src="../../../assets/vendors/js/extensions/jquery.knob.min.js"></script>
+        <script src="../../../assets/js/scripts/extensions/knob.js"></script>
+        <script src="../../../assets/vendors/js/charts/raphael-min.js"></script>
+        <script src="../../../assets/vendors/js/charts/morris.min.js"></script>
+        <script src="../../../assets/vendors/js/charts/jvector/jquery-jvectormap-2.0.3.min.js"></script>
+        <script src="../../../assets/vendors/js/charts/jvector/jquery-jvectormap-world-mill.js"></script>
+        <script src="../../../assets/data/jvector/visitor-data.js"></script>
+        <script src="../../../assets/vendors/js/charts/chart.min.js"></script>
+        <script src="../../../assets/vendors/js/charts/jquery.sparkline.min.js"></script>
+        <script src="../../../assets/vendors/js/extensions/unslider-min.js"></script>
+        <script src="../../../assets/js/core/app-menu.js"></script>
+        <script src="../../../assets/js/core/app.js"></script>
+        <script type="text/javascript" src="../../../assets/js/scripts/ui/breadcrumbs-with-stats.js"></script>
+        <script src="../../../assets/js/scripts/pages/dashboard-analytics.js"></script>
+        <script type="text/javascript">
+            function selectFile() {
+                document.getElementById("fileSelector").click();
+            }
+        </script>
+    </body>
+    </html>

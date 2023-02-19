@@ -1,0 +1,29 @@
+<html>
+
+<head>
+</head>
+
+<body class="horizontal-layout horizontal-menu 1-column menu-expanded blank-page blank-page" data-open="click" data-menu="horizontal-menu" data-col="1-column">
+    <div class="app-content container center-layout mt-2 mb-2">
+        <div class="content-wrapper" data-scroll-to-active="true">
+            <div class="content-detached content-right">
+                <div class="content-body">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+            <div class="sidebar-detached sidebar-left">
+                <div class="sidebar">
+                    <div class="list-group list-group-messages border-black">
+                        <a ID="lbProfile" class="list-group-item list-group-item-action border-0" OnClick="lbProfile_Click">
+                        <i class="ft-user mr-1"></i>Edit Account
+                        </a>
+                        <a ID="lbPushNotification" class="list-group-item list-group-item-action border-0" OnClick="lbPushNotification_Click"><i class="fa fa-bell-o mr-1"></i>Push Notification</a>
+                        <a ID="lbMyPost" class="list-group-item list-group-item-action border-0" OnClick="lbMyPost_Click"><i class="fa fa-tasks mr-1"></i>Post Saya</a>
+                    </div>
+                </div>
+            </div>                
+        </div>
+    </div>
+</body>
+
+</html>
