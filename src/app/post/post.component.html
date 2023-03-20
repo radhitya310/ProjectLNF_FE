@@ -49,18 +49,19 @@
                                 <li>
                                     <span class="card-title">Deskripsi</span>
                                 </li>
-                                <a class="float-right" (click)="isSaved()">
-                                    <li style="padding-right: 2px">
-                                        <i class="fa animate" [ngClass]="isPostSaved ? 'fa-heart' : 'fa-heart-o'"></i>
-                                    </li>
-                                    <li class="pr-1">Save</li> 
-                                </a>
                                 <a href="#" class="float-right">
                                     <li style="padding-right: 2px">
                                         <span class="fa fa-share"></span>
                                     </li>
                                     <li class="pr-1">Share</li>
                                 </a>
+                                <a class="float-right" (click)="likePost('1')">
+                                    <li style="padding-right: 2px">
+                                        <i class="fa animate" [ngClass]="isPostLiked ? 'fa-heart' : 'fa-heart-o'"></i>
+                                    </li>
+                                    <li class="pr-1"> {{resPostGetLayout[0].Likes}} Likes</li> 
+                                </a>
+                                
                             </ul>
 
                         </div>

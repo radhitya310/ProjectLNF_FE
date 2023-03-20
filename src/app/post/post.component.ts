@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { EnviUrl } from '../constant/EnviURL';
+import { ReqLikesModel, ResLikesModel } from '../model/likes.model';
 import { ReqPostCommentModel, ResPostCommentModel } from '../model/post-comment.model';
 import { ReqPostGetLayoutModel, ResPostGetLayoutModel } from '../model/post-get-layout.model';
 import { AuthService } from '../services/auth.service';
@@ -16,10 +17,11 @@ import { AuthService } from '../services/auth.service';
 export class PostComponent implements OnInit {
   resPostGetLayout: Array<ResPostGetLayoutModel> = new Array<ResPostGetLayoutModel>();
   resPostCommentLayout: Array<ResPostCommentModel> = new Array<ResPostCommentModel>();
+  resLikes: ResLikesModel = new ResLikesModel();
   public showNotFound = false;
   public isLogin = false;
   public currentPage = 0;
-  public isPostSaved = false;
+  public isPostLiked = false;
   sessionId: string | any;
 
   constructor(
@@ -41,6 +43,23 @@ export class PostComponent implements OnInit {
     }
   }
   
+  async likePost(doLike: string = ""){
+    let url = this.router.url;
+    let reqLikes: ReqLikesModel = new ReqLikesModel();
+    reqLikes.MUserId = this.resPostGetLayout[0].MUserId;
+    reqLikes.SessionId = "";
+    reqLikes.TPostId = this.resPostGetLayout[0].TPostId;
+    reqLikes.DoLike = doLike;
+
+    this.http.post(this.EnviUrl.LikePost, {reqLikes}).subscribe(
+      (response: any) => {
+        this.resLikes = response;
+        if(doLike == "1")
+          this.resPostGetLayout[0].Likes = this.resLikes.TotalLikes;
+        this.isPostLiked = this.resLikes.IsLiked == "1" ? true : false;
+      });
+  }
+
   async getPostLayout(){
     let url = this.router.url;
     let reqPostGetLayout: ReqPostGetLayoutModel = new ReqPostGetLayoutModel();
@@ -51,6 +70,7 @@ export class PostComponent implements OnInit {
         this.resPostGetLayout = response;
         this.titleService.setTitle(this.resPostGetLayout[0].PostTitle + ' | Ketemu');
         this.getComment();
+        this.likePost("0");
       });
   }
 
@@ -67,10 +87,11 @@ export class PostComponent implements OnInit {
         this.resPostCommentLayout = response;
       });
   }
-  isSaved(){
-    if(!this.isPostSaved)
-      this.isPostSaved = true;
+
+  isLiked(){
+    if(!this.isPostLiked)
+      this.isPostLiked = true;
     else
-      this.isPostSaved = false;
+      this.isPostLiked = false;
   }
 }

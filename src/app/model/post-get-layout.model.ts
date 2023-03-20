@@ -12,7 +12,7 @@ export class ResPostGetLayoutModel {
     MUserId: number;
     Username: string;
     FullName: string;
-    Likes: number;
+    Likes: string;
     TotalComment: number;
     ImgUrl: string[] = [];
     PostDate: Date | undefined;
@@ -26,7 +26,7 @@ export class ResPostGetLayoutModel {
         this.MUserId = 0;
         this.Username = "";
         this.FullName = "";
-        this.Likes = 0;
+        this.Likes = "";
         this.TotalComment = 0;
         this.PostUrlSlug = "";
         this.UrlProfilePicture = "";
