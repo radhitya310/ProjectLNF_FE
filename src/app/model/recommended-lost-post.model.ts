@@ -23,6 +23,7 @@ export class ResRecommendedLostPostModel {
     TotalComment: number;
     ImgUrl: string;
     PostDate: Date | undefined;    
+    PostDateTimestamp: string;
     PostUrlSlug: string;    
     constructor() { 
         this.TPostId = 0;
@@ -33,7 +34,8 @@ export class ResRecommendedLostPostModel {
         this.TotalLikes = 0;
         this.TotalComment = 0;
         this.ImgUrl = "";
-        this.PostUrlSlug = "";        
+        this.PostUrlSlug = "";
+        this.PostDateTimestamp = "";
     }
 }
 

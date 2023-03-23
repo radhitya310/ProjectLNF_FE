@@ -21,5 +21,6 @@ export class EnviUrl{
     public AuthUser = this.env.lnfUrl + 'api/request/AuthUser'
     public CheckSession = this.env.lnfUrl + 'api/request/CheckSession'
     public BindCategory = this.env.lnfUrl + 'api/request/BindCategory'
-    public PostItem = this.env.lnfUrl + 'api/request/PostItem'    
+    public PostItem = this.env.lnfUrl + 'api/request/PostItem'
+    public LikePost = this.env.lnfUrl + 'api/request/LikePost'   
 }
