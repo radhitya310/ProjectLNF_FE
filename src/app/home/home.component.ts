@@ -9,9 +9,11 @@ import { ReqRecommendedLostPostModel, ResRecommendedLostPostModel } from '../mod
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css','./home.component.switch.css']
 })
+
 export class HomeComponent implements OnInit {
+  isChecked = false;
   resRecommendedLostPost: Array<ResRecommendedLostPostModel> = new Array<ResRecommendedLostPostModel>();
   resRecommendedFoundPost: Array<ResRecommendedLostPostModel> = new Array<ResRecommendedLostPostModel>();
   resHomeBanner: Array<ResHomeBannerModel> = new Array<ResHomeBannerModel>();
@@ -73,5 +75,5 @@ export class HomeComponent implements OnInit {
       (response: any) => {
         this.resHomeBanner = response;        
       });
-  }
+  }  
 }

@@ -1,3 +1,4 @@
+<html class="loading" lang="en" data-textdirection="ltr">
 <div class="app-content container center-layout mt-2">
     <div class="card banner-highlight">
         <div class="card-content">
@@ -30,21 +31,87 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3 col-sm-12 pl-0">
-                        <H2 class="ml-1">Kehilangan barang</H2>
-                    </div>
-                    <div class="col-md-4 col-sm-12 pl-0 align-self-center">
-                        <a>Lihat semua</a>
+                        <div class="btn-container">
+                            <label class="switch btn-color-mode-switch">
+                                <input type="checkbox" name="toggle_mode" id="toggle_mode" value="1" [(ngModel)]="isChecked">
+                                <label for="toggle_mode" data-on="LOST" data-off="FOUND" class="btn-color-mode-switch-inner"></label>
+                            </label>
+                          </div>
                     </div>
                 </div>
                 <div>
                     <div class="my-overlay" *ngIf="showOverlay">
                         <h4 class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></h4>
                     </div>
-                    <div class="row" *ngIf="!showOverlay">
+                    <div class="row" *ngIf="!isChecked">
                         <div class="col-12">
+                            <h6 class="text-bold-600 m-0">
+                                ini found
+                            </h6>
                             <div class="container">
                                 <div class="row justify-content-left">
                                     <div class="col-auto mb-1" *ngFor="let post of resRecommendedLostPost">
+                                        <div class="card card-img-top border-grey border-lighten-2"
+                                            style="height: 300px; width: 240px">
+                                            <a routerLink="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}" href="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}"
+                                                itemprop="contentUrl" style="height:
+                                                    100%">
+                                                <div class="card-body p-0" style="height: 200px; width: 240px">
+                                                    <img class="img-post gallery-thumbnail card-img-top img-fluid"
+                                                        src="{{post.ImgUrl}}" itemprop="thumbnail"
+                                                        alt="Image description" />
+                                                </div>
+                                                <div class="card-body px-0 pt-0">
+                                                    <div class="mb-0 ml-1" style="height: 70px">
+                                                        <div class="card-home">
+                                                            <h6 class="text-bold-600 m-0">
+                                                                {{ post.PostTitle }}
+                                                            </h6>
+                                                        </div>
+                                                        <div class="card-home">
+                                                            <h6 class="card-subtitle text-muted mt-1">
+                                                                {{post.PostDescription}}
+                                                            </h6>
+                                                        </div>
+                                                        <div class="card-home text-right mr-1">
+                                                            <h6 class="text-bold-600">
+                                                                {{post.PostDate}}
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="m-0" />
+                                                    <div class="text-center">
+                                                        <ul class="list-inline mb-1">
+                                                            <li class="col-md-5 col-sm-12">
+                                                                <span class="fa fa-heart-o"></span>
+                                                                <span>
+                                                                    {{ post.TotalLikes }}
+                                                                </span>
+                                                            </li>
+                                                            <li class="col-md-5 col-sm-12">
+                                                                <span class="fa fa-comment-o"></span>
+                                                                <span>
+                                                                    {{ post.TotalComment }}
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="isChecked">
+                        <div class="col-12">
+                            <h6 class="text-bold-600 m-0">
+                                ini lost
+                            </h6>
+                            <div class="container">
+                                <div class="row justify-content-left">
+                                    <div class="col-auto mb-1" *ngFor="let post of resRecommendedFoundPost">
                                         <div class="card card-img-top border-grey border-lighten-2"
                                             style="height: 300px; width: 240px">
                                             <a routerLink="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}" href="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}"
@@ -114,93 +181,9 @@
         </div>
     </div>
 </div>
-<div class="app-content container center-layout mt-2">
-    <div class="content-wrapper">
-        <div class="content-body">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 pl-0">
-                        <H2 class="ml-1">Menemukan barang</H2>
-                    </div>
-                    <div class="col-md-4 col-sm-12 pl-0 align-self-center">
-                        <a>Lihat semua</a>
-                    </div>
-                </div>
-                <div>
-                    <div class="my-overlay" *ngIf="showOverlay">
-                        <h4 class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></h4>
-                    </div>
-                    <div class="row" *ngIf="!showOverlay">
-                        <div class="col-12">
-                            <div class="container">
-                                <div class="row justify-content-left">
-                                    <div class="col-auto mb-1" *ngFor="let post of resRecommendedFoundPost">
-                                        <div class="card card-img-top border-grey border-lighten-2"
-                                            style="height: 300px; width: 240px">
-                                            <a routerLink="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}" href="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}"
-                                                itemprop="contentUrl" style="height:
-                                                    100%">
-                                                <div class="card-body p-0" style="height: 200px; width: 240px">
-                                                    <img class="img-post gallery-thumbnail card-img-top img-fluid"
-                                                        src="{{post.ImgUrl}}" itemprop="thumbnail"
-                                                        alt="Image description" />
-                                                </div>
-                                                <div class="card-body px-0 pt-0">
-                                                    <div class="mb-0 ml-1" style="height: 70px">
-                                                        <div class="card-home">
-                                                            <h6 class="text-bold-600 m-0">
-                                                                {{ post.PostTitle }}
-                                                            </h6>
-                                                        </div>
-                                                        <div class="card-home">
-                                                            <h6 class="card-subtitle text-muted mt-1">
-                                                                {{post.PostDescription}}
-                                                            </h6>
-                                                        </div>
-                                                        <div class="card-home text-right mr-1">
-                                                            <h6 class="text-bold-600">
-                                                                {{post.PostDate}}
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                    <hr class="m-0" />
-                                                    <div class="text-center">
-                                                        <ul class="list-inline mb-1">
-                                                            <li class="col-md-5 col-sm-12">
-                                                                <span class="fa fa-heart-o"></span>
-                                                                <span>
-                                                                    {{ post.TotalLikes }}
-                                                                </span>
-                                                            </li>
-                                                            <li class="col-md-5 col-sm-12">
-                                                                <span class="fa fa-comment-o"></span>
-                                                                <span>
-                                                                    {{ post.TotalComment }}
-                                                                </span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <button type="button" class="btn btn-outline-primary square btn-min-width mr-1 mb-1" [disabled]="showBtnFoundSpinner" (click)="loadFoundNextPage()">
-                    <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="showBtnFoundSpinner"></i> 
-                    Muat
-                    Lainnya</button>
-            </div>
             <!-- Root element of PhotoSwipe. Must have class pswp. -->
             <!--/ PhotoSwipe -->
 
-        </div>
-    </div>
-</div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+</html>
