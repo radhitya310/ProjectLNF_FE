@@ -5,6 +5,7 @@ import { EnviUrl } from '../constant/EnviURL';
 import { VariableConstant } from '../constant/VariableConstant';
 import { ResHomeBannerModel } from '../model/home-banner.model';
 import { ReqRecommendedLostPostModel, ResRecommendedLostPostModel } from '../model/recommended-lost-post.model';
+import { ResBindCategoryModel } from '../model/bind-category.model';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   resRecommendedLostPost: Array<ResRecommendedLostPostModel> = new Array<ResRecommendedLostPostModel>();
   resRecommendedFoundPost: Array<ResRecommendedLostPostModel> = new Array<ResRecommendedLostPostModel>();
   resHomeBanner: Array<ResHomeBannerModel> = new Array<ResHomeBannerModel>();
+  resBindCategory: Array<ResBindCategoryModel> = new Array<ResBindCategoryModel>();
   public static ReturnObj = "ReturnObject";
   public showOverlay = true;
   public showBtnLostSpinner = false;
@@ -32,6 +34,7 @@ export class HomeComponent implements OnInit {
     this.getLostPostRecommendation();
     this.getFoundPostRecommendation();
     this.loadHomeBanner();
+    this.initCategory();
   }
 
   async getLostPostRecommendation(){
@@ -76,4 +79,11 @@ export class HomeComponent implements OnInit {
         this.resHomeBanner = response;        
       });
   }  
+
+  initCategory(){
+    this.http.post(this.EnviUrl.BindCategory, {}).subscribe(
+      (response: any) => {
+        this.resBindCategory = response;      
+      });
+  }
 }

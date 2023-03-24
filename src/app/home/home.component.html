@@ -24,6 +24,18 @@
             </div>
         </div>
     </div>
+    <div class="sticky-navbar">
+        <div class="sticky-navbar__container">
+            <ul class="nav nav-pills nav-pill-bordered">
+                <li class="nav-item" style="border-radius: 1rem; margin:0 10px 10px 0;  " *ngFor="let cat of resBindCategory">
+                    <a class="nav-link" style="border-radius: 1rem;" id="{{cat.MCategoryId}}" data-toggle="pill" href="#homeEle" aria-expanded="true">
+                        <i class="{{cat.CategoryClass}}"></i>
+                        {{cat.CategoryName}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 <div class="app-content container center-layout mt-2">
     <div class="content-wrapper">
@@ -135,8 +147,8 @@
                                                             </h6>
                                                         </div>
                                                         <div class="card-home text-right mr-1">
-                                                            <h6 class="text-bold-600">
-                                                                {{post.PostDate}}
+                                                            <h6 class="text-muted">
+                                                                {{post.PostDateTimestamp}}
                                                             </h6>
                                                         </div>
                                                     </div>
