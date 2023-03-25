@@ -1,11 +1,19 @@
-export class ReqUserPostsModel {
-    MUserId: number;
+export class ReqRecommendedFoundPostModel {
+    page: number;
+    Location: string;
+    Cookies: string;
+    TotalItemPerPage: number;
+    // PostTypeId: number;
     constructor() { 
-        this.MUserId = 0;
+        this.page = 0;
+        this.Location = "";
+        this.Cookies = "";
+        this.TotalItemPerPage = 20;
+        // this.PostTypeId = 0;
     }
 }
 
-export class ResUserPostsModel {
+export class ResRecommendedFoundPostModel {
     TPostId: number;
     PostTitle: string;
     PostDescription: string;
@@ -15,8 +23,8 @@ export class ResUserPostsModel {
     TotalComment: number;
     ImgUrl: string;
     PostDate: Date | undefined;    
-    PostUrlSlug: string;     
     PostDateTimestamp: string;
+    PostUrlSlug: string;    
     constructor() { 
         this.TPostId = 0;
         this.PostTitle = "";
@@ -26,7 +34,7 @@ export class ResUserPostsModel {
         this.TotalLikes = 0;
         this.TotalComment = 0;
         this.ImgUrl = "";
-        this.PostUrlSlug = "";       
-        this.PostDateTimestamp = ""; 
+        this.PostUrlSlug = "";
+        this.PostDateTimestamp = "";
     }
 }

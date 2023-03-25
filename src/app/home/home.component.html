@@ -57,12 +57,9 @@
                     </div>
                     <div class="row" *ngIf="!isChecked">
                         <div class="col-12">
-                            <h6 class="text-bold-600 m-0">
-                                ini found
-                            </h6>
                             <div class="container">
                                 <div class="row justify-content-left">
-                                    <div class="col-auto mb-1" *ngFor="let post of resRecommendedLostPost">
+                                    <div class="col-auto mb-1" *ngFor="let post of resRecommendedFoundPost">
                                         <div class="card card-img-top border-grey border-lighten-2"
                                             style="height: 300px; width: 240px">
                                             <a routerLink="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}" href="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}"
@@ -118,12 +115,9 @@
                     </div>
                     <div class="row" *ngIf="isChecked">
                         <div class="col-12">
-                            <h6 class="text-bold-600 m-0">
-                                ini lost
-                            </h6>
                             <div class="container">
                                 <div class="row justify-content-left">
-                                    <div class="col-auto mb-1" *ngFor="let post of resRecommendedFoundPost">
+                                    <div class="col-auto mb-1" *ngFor="let post of resRecommendedLostPost">
                                         <div class="card card-img-top border-grey border-lighten-2"
                                             style="height: 300px; width: 240px">
                                             <a routerLink="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}" href="/lost/{{post.PostUrlSlug}}_idx_{{post.TPostId}}"

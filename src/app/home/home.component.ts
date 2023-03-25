@@ -5,6 +5,7 @@ import { EnviUrl } from '../constant/EnviURL';
 import { VariableConstant } from '../constant/VariableConstant';
 import { ResHomeBannerModel } from '../model/home-banner.model';
 import { ReqRecommendedLostPostModel, ResRecommendedLostPostModel } from '../model/recommended-lost-post.model';
+import { ReqRecommendedFoundPostModel, ResRecommendedFoundPostModel } from '../model/recommended-found-post.model';
 import { ResBindCategoryModel } from '../model/bind-category.model';
 
 @Component({
@@ -16,7 +17,7 @@ import { ResBindCategoryModel } from '../model/bind-category.model';
 export class HomeComponent implements OnInit {
   isChecked = false;
   resRecommendedLostPost: Array<ResRecommendedLostPostModel> = new Array<ResRecommendedLostPostModel>();
-  resRecommendedFoundPost: Array<ResRecommendedLostPostModel> = new Array<ResRecommendedLostPostModel>();
+  resRecommendedFoundPost: Array<ResRecommendedFoundPostModel> = new Array<ResRecommendedFoundPostModel>();
   resHomeBanner: Array<ResHomeBannerModel> = new Array<ResHomeBannerModel>();
   resBindCategory: Array<ResBindCategoryModel> = new Array<ResBindCategoryModel>();
   public static ReturnObj = "ReturnObject";
@@ -49,10 +50,10 @@ export class HomeComponent implements OnInit {
   }
 
   async getFoundPostRecommendation(){
-    let reqRecommendedFoundPost: ReqRecommendedLostPostModel = new ReqRecommendedLostPostModel();
+    let reqRecommendedFoundPost: ReqRecommendedFoundPostModel = new ReqRecommendedFoundPostModel();
     reqRecommendedFoundPost.TotalItemPerPage = 20;
     reqRecommendedFoundPost.page = 1;
-    this.http.post(this.EnviUrl.RecommendedLostPost, {}).subscribe(
+    this.http.post(this.EnviUrl.RecommendedFoundPost, {}).subscribe(
       (response: any) => {
         this.resRecommendedFoundPost = response;
         this.showOverlay = false;

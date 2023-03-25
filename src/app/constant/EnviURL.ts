@@ -10,6 +10,7 @@ export class EnviUrl{
     public env = this.configEnv.getConfig();
 
     public RecommendedLostPost = this.env.lnfUrl + 'api/request/RecommendedLostPost';
+    public RecommendedFoundPost = this.env.lnfUrl + 'api/request/RecommendedFoundPost';
     public PostGetLayout = this.env.lnfUrl + 'api/request/PostGetLayout';
     public ProfileLayout = this.env.lnfUrl + 'api/request/ProfileLayout';
     public UserPosts = this.env.lnfUrl + 'api/request/UserPosts';
