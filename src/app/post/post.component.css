@@ -13,3 +13,8 @@
     transition: all .9s ease-in-out;
     transform: rotate(-1turn);
   }
+
+  textarea {
+    resize: none;
+    overflow: hidden;
+}

@@ -25,6 +25,7 @@ import { SearchComponent } from './search/search.component';
 import { GoogleInitOptions, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { RegisterComponent } from './register/register.component';
+import { AutosizeModule } from 'ngx-autosize';
 
 const enviConfig = (config: UrlConfigService) => {
   return () => {
@@ -48,7 +49,7 @@ const googleLoginOptions: GoogleInitOptions = {
     HomeComponent,
     PostComponent,
     SearchComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,8 @@ const googleLoginOptions: GoogleInitOptions = {
     HttpClientModule,
     CommonModule,
     MatDialogModule,
-    SocialLoginModule
+    SocialLoginModule,
+    AutosizeModule
   ],
   providers: [
     EnviUrl,

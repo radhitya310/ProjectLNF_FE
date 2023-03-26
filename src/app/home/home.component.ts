@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { EnviUrl } from '../constant/EnviURL';
 import { VariableConstant } from '../constant/VariableConstant';
 import { ResHomeBannerModel } from '../model/home-banner.model';
 import { ReqRecommendedLostPostModel, ResRecommendedLostPostModel } from '../model/recommended-lost-post.model';
+import { UserDataModel } from '../model/user-data.model';
+import { AuthService } from '../services/auth.service';
 import { ReqRecommendedFoundPostModel, ResRecommendedFoundPostModel } from '../model/recommended-found-post.model';
 import { ResBindCategoryModel } from '../model/bind-category.model';
 
@@ -24,14 +27,20 @@ export class HomeComponent implements OnInit {
   public showOverlay = true;
   public showBtnLostSpinner = false;
   public showBtnFoundSpinner = false;
+  userData: UserDataModel = new UserDataModel();
+  
   constructor(
     private http: HttpClient,
     private EnviUrl: EnviUrl, 
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
     ) {     
   }
     
   async ngOnInit() {
+    var decryptedCookie = AuthService.GetCookie(this.cookieService, "user");
+    if(decryptedCookie != '' && decryptedCookie != null)
+      this.userData = JSON.parse(decryptedCookie);
     this.getLostPostRecommendation();
     this.getFoundPostRecommendation();
     this.loadHomeBanner();
