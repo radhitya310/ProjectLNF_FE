@@ -131,9 +131,13 @@
                         <h4 class="card-title">Category</h4>
                     <!-- </div> -->
                     <div>
-                        <label class="nav-item" style="border-radius: 1rem; margin:0 10px 10px 0;  " *ngFor="let cat of resBindCategory">
-                          <input type="radio" name="category" (click)="rbCatChange(cat.MCategoryId)" [(ngModel)]="cat.isChecked" [checked]="cat.isChecked  == true? true : false">
-                            {{cat.CategoryName}} {{cat.isChecked}}
+                        <label class="nav-item" style="border-radius: 1rem; margin:0 10px 10px 0;" *ngFor="let cat of resBindCategory">
+                          <!-- <input type="radio" name="category" [(ngModel)]="cat.isChecked" [checked]="cat.isChecked  == true ? true : false"> -->
+                          <input type="radio" name="categoryGroup"
+                            [value]="cat.MCategoryId"
+                            [checked]="cat.isChecked"
+                            (click)="rbCatChange(cat.MCategoryId)">
+                            {{cat.CategoryName}}
                         </label>
                     </div>
                     <!-- /Striped Progress sample -->

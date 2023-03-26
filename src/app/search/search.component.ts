@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit {
   sub: Subscription | undefined;
   query: string = '';
   type: string = '';
+  test: string = '';
   selectedValue: number = 0;
   category: number = 0;
   rbLostChecked: boolean = false;
@@ -55,7 +56,7 @@ export class SearchComponent implements OnInit {
         this.showOverlay = true;
         this.query = params.get('q') || '';
         this.type = params.get('type') || '';
-        this.category = Number(params.get('cat'));
+        this.category = Number(params.get('cat')) || 0;
         this.currentPage = Number(params.get('page')) || 1;
         this.rbChange(this.type, true);
         this.rbCatChange(this.category,true);
@@ -69,12 +70,12 @@ export class SearchComponent implements OnInit {
     this.showOverlay = true;
     await new Promise(f => setTimeout(f, 200));
     if (evt.toString() == "Lost") {
-      this.rbLostChecked = true
-      this.rbFoundChecked = false
+      this.rbLostChecked = true;
+      this.rbFoundChecked = false;
       this.type = "Lost";
     } else if (evt.toString() == "Found") {
-      this.rbLostChecked = false
-      this.rbFoundChecked = true
+      this.rbLostChecked = false;
+      this.rbFoundChecked = true;
       this.type = "Found";
     }
 
@@ -86,17 +87,21 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  async rbCatChange(ix: any, isInit: any = null) {    
+  async rbCatChange(ix: any, isInit: any = null) {
+    if(isInit == null)
+      this.test = 'masuk';
     this.showOverlay = true;
-    await new Promise(f => setTimeout(f, 2000));
+    await new Promise(f => setTimeout(f, 1000));
     
-    for(let item of this.resBindCategory){
-      if(item.MCategoryId == ix)
+    this.resBindCategory.forEach(item => {
+      if(item.MCategoryId == ix){
         item.isChecked = true;
+        this.category = item.MCategoryId;
+      }        
       else
         item.isChecked = false;
-    }
-
+    })
+    
     if (isInit == null) {
       this.router.navigate(
         ['/search'],
