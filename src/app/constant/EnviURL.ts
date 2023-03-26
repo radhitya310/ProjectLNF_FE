@@ -23,5 +23,7 @@ export class EnviUrl{
     public CheckSession = this.env.lnfUrl + 'api/request/CheckSession'
     public BindCategory = this.env.lnfUrl + 'api/request/BindCategory'
     public PostItem = this.env.lnfUrl + 'api/request/PostItem'
-    public LikePost = this.env.lnfUrl + 'api/request/LikePost'   
+    public LikePost = this.env.lnfUrl + 'api/request/LikePost'
+    public CreateComment = this.env.lnfUrl + 'api/request/CreateComment'
+    public PostReplyComment = this.env.lnfUrl + 'api/request/PostReplyComment';
 }

@@ -24,7 +24,8 @@ export class ResRecommendedLostPostModel {
     ImgUrl: string;
     PostDate: Date | undefined;    
     PostDateTimestamp: string;
-    PostUrlSlug: string;    
+    PostUrlSlug: string;
+    IsPostLiked: string;
     constructor() { 
         this.TPostId = 0;
         this.PostTitle = "";
@@ -36,6 +37,7 @@ export class ResRecommendedLostPostModel {
         this.ImgUrl = "";
         this.PostUrlSlug = "";
         this.PostDateTimestamp = "";
+        this.IsPostLiked= "";
     }
 }
 
