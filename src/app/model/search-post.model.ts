@@ -3,11 +3,15 @@ export class ReqSearchPostModel {
     Query: string
     CurrentPage: number
     PageSize: number
+    Type: string
+    Category: number
     constructor() { 
         this.SortBy = "";
         this.Query = "";
         this.CurrentPage = 0;
         this.PageSize = 0;
+        this.Type = ""
+        this.Category = 0;
     }
 }
 
@@ -23,6 +27,7 @@ export class ResSearchPostModel {
     PostDate: Date | undefined;    
     PostUrlSlug: string;
     PostCount: number;
+    PostDateTimestamp: string;
     constructor() { 
         this.TPostId = 0;
         this.PostTitle = "";
@@ -34,5 +39,6 @@ export class ResSearchPostModel {
         this.ImgUrl = "";
         this.PostUrlSlug = "";      
         this.PostCount = 0;  
+        this.PostDateTimestamp = "";
     }
 }

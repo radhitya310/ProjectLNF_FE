@@ -6,6 +6,7 @@ import { EnviUrl } from '../constant/EnviURL';
 import { ReqPostCommentModel, ResPostCommentModel } from '../model/post-comment.model';
 import { ReqPostGetLayoutModel, ResPostGetLayoutModel } from '../model/post-get-layout.model';
 import { ReqSearchPostModel, ResSearchPostModel } from '../model/search-post.model';
+import { ResBindCategoryModel } from '../model/bind-category.model';
 
 @Component({
   selector: 'app-search',
@@ -15,12 +16,15 @@ import { ReqSearchPostModel, ResSearchPostModel } from '../model/search-post.mod
 export class SearchComponent implements OnInit {
   sub: Subscription | undefined;
   query: string = '';
-  type: string | undefined;
+  type: string = '';
+  selectedValue: number = 0;
+  category: number = 0;
   rbLostChecked: boolean = false;
   rbFoundChecked: boolean = false;
   lostText: string | undefined = 'Lost';
   foundText: string | undefined = 'Found';
   resSearchPostModel: Array<ResSearchPostModel> = new Array<ResSearchPostModel>();
+  resBindCategory: Array<ResBindCategoryModel> = new Array<ResBindCategoryModel>();
   public showOverlay = true;  
   totalCount: number = 0;
   totalPage: Array<number> = new Array<number>();
@@ -45,13 +49,16 @@ export class SearchComponent implements OnInit {
 
   Object = Object;
   ngOnInit() {
+    this.initCategory();
     this.sub = this.Activatedroute.queryParamMap
       .subscribe(params => {
         this.showOverlay = true;
         this.query = params.get('q') || '';
         this.type = params.get('type') || '';
+        this.category = Number(params.get('cat'));
         this.currentPage = Number(params.get('page')) || 1;
         this.rbChange(this.type, true);
+        this.rbCatChange(this.category,true);
         this.sortValue = 'Tanggal Posting';
         this.getPostByParam('');
         this.showOverlay = false;
@@ -74,7 +81,26 @@ export class SearchComponent implements OnInit {
     if (isInit == null) {
       this.router.navigate(
         ['/search'],
-        { queryParams: { q: this.query, type: this.type } }
+        { queryParams: { q: this.query, type: this.type, cat: this.category } }
+      );
+    }
+  }
+
+  async rbCatChange(ix: any, isInit: any = null) {    
+    this.showOverlay = true;
+    await new Promise(f => setTimeout(f, 2000));
+    
+    for(let item of this.resBindCategory){
+      if(item.MCategoryId == ix)
+        item.isChecked = true;
+      else
+        item.isChecked = false;
+    }
+
+    if (isInit == null) {
+      this.router.navigate(
+        ['/search'],
+        { queryParams: { q: this.query, type: this.type, cat: this.category } }
       );
     }
   }
@@ -92,6 +118,8 @@ export class SearchComponent implements OnInit {
     reqSearchPostModel.PageSize = this.pageSize;
     reqSearchPostModel.CurrentPage = this.currentPage;
     reqSearchPostModel.Query = this.query;
+    reqSearchPostModel.Type = this.type;
+    reqSearchPostModel.Category = this.category;
     if(sort == '')
       reqSearchPostModel.SortBy = 'TPostId';
     else
@@ -122,6 +150,12 @@ export class SearchComponent implements OnInit {
     this.showOverlay = false;
   }
 
+  async initCategory(){
+    this.http.post(this.EnviUrl.BindCategory, {}).subscribe(
+      (response: any) => {
+        this.resBindCategory = response;
+      });
+  }
   
 }
 
