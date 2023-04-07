@@ -28,7 +28,8 @@
         <div class="sticky-navbar__container">
             <ul class="nav nav-pills nav-pill-bordered">
                 <li class="nav-item" style="border-radius: 1rem; margin:0 10px 10px 0;  " *ngFor="let cat of resBindCategory">
-                    <a class="nav-link" style="border-radius: 1rem;" id="{{cat.MCategoryId}}" data-toggle="pill" href="#homeEle" aria-expanded="true">
+                    <a class="nav-link" style="border-radius: 1rem;" id="{{cat.MCategoryId}}" data-toggle="pill" 
+                    (click)="rbCatChange(cat.MCategoryId)" [ngClass]="category != cat.MCategoryId ? '' : 'active'" aria-expanded="true">
                         <i class="{{cat.CategoryClass}}"></i>
                         {{cat.CategoryName}}
                     </a>
@@ -70,7 +71,7 @@
                                                         src="{{post.ImgUrl}}" itemprop="thumbnail"
                                                         alt="Image description" />
                                                 </div>
-                                                <div class="card-body px-0 pt-0">
+                                                <div class="card-body px-0 pt-0" style="padding: 0">
                                                     <div class="mb-0 ml-1" style="height: 70px">
                                                         <div class="card-home">
                                                             <h6 class="text-bold-600 m-0">
@@ -89,24 +90,45 @@
                                                         </div>
                                                     </div>
                                                     <hr class="m-0" />
-                                                    <div class="text-center">
-                                                        <ul class="list-inline mb-1">
-                                                            <li class="col-md-5 col-sm-12">
-                                                                <span class="fa fa-heart-o"></span>
-                                                                <span>
-                                                                    {{ post.TotalLikes }}
-                                                                </span>
-                                                            </li>
-                                                            <li class="col-md-5 col-sm-12">
-                                                                <span class="fa fa-comment-o"></span>
-                                                                <span>
-                                                                    {{ post.TotalComment }}
-                                                                </span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
                                                 </div>
                                             </a>
+                                            <div class="text-center">
+                                                <!-- <ul class="list-inline mb-1">
+                                                    <li class="col-md-5 col-sm-12">
+                                                        <span class="fa fa-heart-o"></span>
+                                                        <span>
+                                                            {{ post.TotalLikes }}
+                                                        </span>
+                                                    </li>
+                                                    <li class="col-md-5 col-sm-12">
+                                                        <span class="fa fa-comment-o"></span>
+                                                        <span>
+                                                            {{ post.TotalComment }}
+                                                        </span>
+                                                    </li>
+                                                </ul> -->
+                                                <ul class="list-inline mb-1">
+                                                    <li>
+                                                        <span class="fa fa-comment-o"></span>
+                                                        <span>
+                                                            {{ post.TotalComment }}
+                                                        </span>
+                                                    </li>
+                                                    <a href="#" class="float-right">
+                                                        <li style="padding-right: 2px">
+                                                            <span class="fa fa-share"></span>
+                                                        </li>
+                                                        <li class="pr-1">Share</li>
+                                                    </a>
+                                                    <a class="float-right" (click)="likePost('1', post.TPostId)">
+                                                        <li style="padding-right: 2px">
+                                                            <i class="fa animate" [ngClass]="post.IsPostLiked == '1' ? 'fa-heart' : 'fa-heart-o'"></i>
+                                                        </li>
+                                                        <li class="pr-1"> {{post.TotalLikes}}</li>
+                                                    </a>
+                    
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +150,7 @@
                                                         src="{{post.ImgUrl}}" itemprop="thumbnail"
                                                         alt="Image description" />
                                                 </div>
-                                                <div class="card-body px-0 pt-0">
+                                                <div class="card-body px-0 pt-0" style="padding: 0;">
                                                     <div class="mb-0 ml-1" style="height: 70px">
                                                         <div class="card-home">
                                                             <h6 class="text-bold-600 m-0">
@@ -147,24 +169,47 @@
                                                         </div>
                                                     </div>
                                                     <hr class="m-0" />
-                                                    <div class="text-center">
-                                                        <ul class="list-inline mb-1">
-                                                            <li class="col-md-5 col-sm-12">
-                                                                <span class="fa animate" [ngClass]="post.IsPostLiked == '1'? 'fa-heart' : 'fa-heart-o'"></span>
-                                                                <span>
-                                                                    {{ post.TotalLikes }}
-                                                                </span>
-                                                            </li>
-                                                            <li class="col-md-5 col-sm-12">
-                                                                <span class="fa fa-comment-o"></span>
-                                                                <span>
-                                                                    {{ post.TotalComment }}
-                                                                </span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
                                                 </div>
                                             </a>
+                                            <div class="text-center">
+                                                <!-- <ul class="list-inline mb-1">
+                                                    <li class="col-md-5 col-sm-12">
+                                                        <a class="float-right" (click)="likePost('1')">
+                                                            <li style="padding-right: 2px">
+                                                                <i class="fa animate" [ngClass]="isPostLiked ? 'fa-heart' : 'fa-heart-o'"></i>
+                                                            </li>
+                                                            <li class="pr-1"> {{resPostGetLayout[0].Likes}}</li>
+                                                        </a>
+                                                    </li>
+                                                    <li class="col-md-5 col-sm-12">
+                                                        <span class="fa fa-comment-o"></span>
+                                                        <span>
+                                                            {{ post.TotalComment }}
+                                                        </span>
+                                                    </li>
+                                                </ul> -->
+                                                <ul class="list-inline mb-1">
+                                                    <li>
+                                                        <span class="fa fa-comment-o"></span>
+                                                        <span>
+                                                            {{ post.TotalComment }}
+                                                        </span>
+                                                    </li>
+                                                    <a href="#" class="float-right">
+                                                        <li style="padding-right: 2px">
+                                                            <span class="fa fa-share"></span>
+                                                        </li>
+                                                        <li class="pr-1">Share</li>
+                                                    </a>
+                                                    <a class="float-right" (click)="likePost('1', post.TPostId)">
+                                                        <li style="padding-right: 2px">
+                                                            <i class="fa animate" [ngClass]="post.IsPostLiked == '1' ? 'fa-heart' : 'fa-heart-o'"></i>
+                                                        </li>
+                                                        <li class="pr-1"> {{post.TotalLikes}}</li>
+                                                    </a>
+                    
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

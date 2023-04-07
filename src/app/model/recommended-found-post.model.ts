@@ -2,13 +2,15 @@ export class ReqRecommendedFoundPostModel {
     page: number;
     Location: string;
     Cookies: string;
-    TotalItemPerPage: number;
+    TotalItemPerPage: number; 
+    Category: number;
     // PostTypeId: number;
     constructor() { 
         this.page = 0;
         this.Location = "";
         this.Cookies = "";
         this.TotalItemPerPage = 20;
+        this.Category = 0;
         // this.PostTypeId = 0;
     }
 }
@@ -24,7 +26,8 @@ export class ResRecommendedFoundPostModel {
     ImgUrl: string;
     PostDate: Date | undefined;    
     PostDateTimestamp: string;
-    PostUrlSlug: string;    
+    PostUrlSlug: string;   
+    IsPostLiked: string;
     constructor() { 
         this.TPostId = 0;
         this.PostTitle = "";
@@ -36,5 +39,6 @@ export class ResRecommendedFoundPostModel {
         this.ImgUrl = "";
         this.PostUrlSlug = "";
         this.PostDateTimestamp = "";
+        this.IsPostLiked= "";
     }
 }

@@ -3,12 +3,14 @@ export class ReqRecommendedLostPostModel {
     Location: string;
     Cookies: string;
     TotalItemPerPage: number;
+    Category: number;
     // PostTypeId: number;
     constructor() { 
         this.page = 0;
         this.Location = "";
         this.Cookies = "";
         this.TotalItemPerPage = 20;
+        this.Category = 0;
         // this.PostTypeId = 0;
     }
 }
